@@ -1,8 +1,8 @@
-// Get references to the relevant HTML elements
+//Metodo para cambiar la asociatividad
 const propositionSelect = document.getElementById("select");
 const proposition2 = document.querySelector(".prop2.op1.proposition");
 
-// Add an event listener to the select element
+//Agregar un listener para cambiar los parentesis
 propositionSelect.addEventListener("change", () => {
   const LOCAL_PROP_OP = {
     op21: document.getElementById("operators21").value,
@@ -21,7 +21,7 @@ propositionSelect.addEventListener("change", () => {
   };
 
   if (propositionSelect.checked) {
-    // prettier-ignore
+    //((p[]q)[]r)
     proposition2.innerHTML = `<label for="prop2">Segunda proposición</label>
     ( ( p
     <select name="operators" id="operators21">
@@ -62,7 +62,7 @@ propositionSelect.addEventListener("change", () => {
     </select>
     s )`;
   } else{
-    // prettier-ignore
+    //(p[](q[]r))
     proposition2.innerHTML = `<label for="prop2">Segunda proposición</label>
     ( p
     <select name="operators" id="operators21">
@@ -105,6 +105,7 @@ propositionSelect.addEventListener("change", () => {
   }
 });
 
+//Función para validar si dos arrays son iguales
 function arrayEquals(a, b) {
   return (
     Array.isArray(a) &&
@@ -114,6 +115,7 @@ function arrayEquals(a, b) {
   );
 }
 
+//Creamos un diccionario de las operaciones
 const OPERATORS = {
     nothing: function(p) {
       return p;
@@ -136,6 +138,7 @@ const OPERATORS = {
   };
 
 
+//Creamos un diccionario para relacionar simbolos con operaciones del diccionario anterior
 const OPERATORS_SYMBOLS = {
   nothing: "",
   and: "∧",
@@ -145,13 +148,14 @@ const OPERATORS_SYMBOLS = {
   biconditional: "↔",
 };
 
+//construimos la parte estatica de cada tabla
+
 const inputs_tab1 = {
   p: [true, true, true, true, false, false, false, false],
   q: [true, true, false, false, true, true, false, false],
   r: [true, false, true, false, true, false, true, false],
 };
 
-// prettier-ignore
 const inputs_tab2 = {
   p: [true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false],
   q: [true, true, true, true, false, false, false, false, true, true, true, true, false, false, false, false],
@@ -179,6 +183,7 @@ formulario.addEventListener("submit", (e) => {
     op26: document.getElementById("operators26").value,
   };
 
+  //operaciones de columnas independientes
   const get_col = (operation, arr) => {
     const result = [];
 
@@ -189,6 +194,7 @@ formulario.addEventListener("submit", (e) => {
     return result;
   };
 
+  //operaciones de columnas dependientes
   const get_col_2_var = (operation, arr1, arr2) => {
     const result = [];
 
@@ -199,7 +205,7 @@ formulario.addEventListener("submit", (e) => {
     return result;
   };
 
-  // //operaciones 1era tabla de verdad
+  //Operaciones primera tabla de verdad
 
   const get_tab1 = () => {
     const col1 = get_col("op11", inputs_tab1["p"]);
@@ -242,10 +248,6 @@ formulario.addEventListener("submit", (e) => {
 
     const col5 = get_col_2_var("op25", col1, col2);
 
-    // console.log(col3);
-    // console.log(col4);
-    // console.log(col5);
-
     const final = get_col_2_var("op23", col4, col5);
 
     const table = {
@@ -266,64 +268,13 @@ formulario.addEventListener("submit", (e) => {
   const tabla1 = get_tab1();
   const tabla2 = get_tab2();
 
-  console.log(tabla1);
-  console.log(tabla2);
+  // console.log(tabla1);
+  // console.log(tabla2);
 
-//   let ere = "";
-
-//         if (arrayEquals(tabla1.col2, inputs_tab1["r"])) {
-//             ere = "r";
-//         } else {
-//             ere = "¬r";
-//         }
-        // if (arrayEquals(tabla1.col1, inputs_tab1["p"])) {
-        //     // header1Cells.splice(3, 1);
-        //     delete header1Cells[3];
-        // } else {
-        //     header1Cells[3] = "¬p";
-        // }
-
-//   const table11 = new gridjs.Grid({
-//     columns: [
-//       "p",
-//       "q",
-//       "r",
-//       `${ere}`,
-//       "col2",
-//       `${OPERATORS_SYMBOLS[LOCAL_PROP_OP["op11"]]}p ${
-//         OPERATORS_SYMBOLS[LOCAL_PROP_OP["op12"]]
-//       } q`,
-//       `p ${OPERATORS_SYMBOLS[LOCAL_PROP_OP["op14"]]} ${
-//         OPERATORS_SYMBOLS[LOCAL_PROP_OP["op15"]]
-//       }r`,
-//       `(${OPERATORS_SYMBOLS[LOCAL_PROP_OP["op11"]]}p ${
-//         OPERATORS_SYMBOLS[LOCAL_PROP_OP["op12"]]
-//       } q) ${OPERATORS_SYMBOLS[LOCAL_PROP_OP["op13"]]} (p ${
-//         OPERATORS_SYMBOLS[LOCAL_PROP_OP["op14"]]
-//       } ${OPERATORS_SYMBOLS[LOCAL_PROP_OP["op15"]]}r)`,
-//     ],
-//     data: tabla1.p.map((_, i) => [
-//       tabla1.p[i],
-//       tabla1.q[i],
-//       tabla1.r[i],
-//       tabla1.col1[i],
-//       tabla1.col2[i],
-//       tabla1.col3[i],
-//       tabla1.col4[i],
-//       tabla1.final[i],
-//     ]),
-//     sort: true,
-//     search: true,
-    
-        
-//   }).render(document.getElementById("table-container"));
-
-
-
-            // create table for tabla1
+            //creamos la tabla 1
             const table1 = document.createElement("table");
 
-            // create table header
+            //creamos los encabezados
             const header1 = document.createElement("tr");
 
             const header1Cells = [
@@ -346,13 +297,11 @@ formulario.addEventListener("submit", (e) => {
             ];
 
             if (arrayEquals(tabla1.col2, inputs_tab1["r"])) {
-                // header1Cells.splice(4, 1);
                 delete header1Cells[4];
             } else {
                 header1Cells[4] = "¬r";
             }
             if (arrayEquals(tabla1.col1, inputs_tab1["p"])) {
-                // header1Cells.splice(3, 1);
                 delete header1Cells[3];
             } else {
                 header1Cells[3] = "¬p";
@@ -365,7 +314,7 @@ formulario.addEventListener("submit", (e) => {
             });
             table1.appendChild(header1);
 
-  // create table body
+  //Crer cuerpo de tabla 1
             for (let i = 0; i < tabla1.p.length; i++) {
                 const row = document.createElement("tr");
                 const cells = [
@@ -404,10 +353,10 @@ formulario.addEventListener("submit", (e) => {
 
             
 
-            // create table for tabla2
+            //Crear tabla 2
             const table2 = document.createElement("table");
 
-            // create table header
+            //Encabezados tabla 2
             const header2 = document.createElement("tr");
 
             let header2Cells;
@@ -461,13 +410,11 @@ formulario.addEventListener("submit", (e) => {
             }
 
             if (arrayEquals(tabla2.col2, inputs_tab2["s"])) {
-                // header1Cells.splice(4, 1);
                 delete header2Cells[5];
             } else {
                 header2Cells[5] = "¬s";
             }
             if (arrayEquals(tabla2.col1, inputs_tab2["p"])) {
-                // header1Cells.splice(3, 1);
                 delete header2Cells[4];
             } else {
                 header2Cells[4] = "¬p";
@@ -480,7 +427,7 @@ formulario.addEventListener("submit", (e) => {
             });
             table2.appendChild(header2);
 
-            // create table body
+            //Crear cuerpo de tabla 2
             for (let i = 0; i < tabla2.p.length; i++) {
                 const row = document.createElement("tr");
                 const cells = [
@@ -519,7 +466,7 @@ formulario.addEventListener("submit", (e) => {
                 table2.appendChild(row);
             }
 
-  // add tables to the page
+  //Mostrar tabla en HTML
   const tableContainer = document.getElementById("table-container");
   tableContainer.innerHTML = "";
   tableContainer.appendChild(table1);

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="IMG/pensamiento-logico.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    <title>Tablas de verdad</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form action="" method="post" id="formulario">
+		<h1>Calculadora de tablas de verdad</h1>
+      <p class="prop1">
+        <label for="prop1">Premisas</label>
+        <input type="checkbox" name="selectp1" id="P1" checked>
+        P1:
+        <select name="operators" id="operators11">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        p
+        <select name="operators" id="operators12">
+			<option value="and">∧</option>
+			<option value="or">∨</option>
+			<option value="implicates">→</option>
+			<option value="biconditional">↔</option>
+        </select>
+
+        <select name="operators" id="operators13">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        q 
+      </p>
+
+      <p class="prop1">
+        <input type="checkbox" name="selectp2" id="P2" checked>
+        P2:
+        <select name="operators" id="operators21">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        q
+        <select name="operators" id="operators22">
+			<option value="and">∧</option>
+			<option value="or">∨</option>
+			<option value="implicates">→</option>
+			<option value="biconditional">↔</option>
+        </select>
+
+        <select name="operators" id="operators23">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        r 
+      </p>
+
+      <p class="prop1">
+        <input type="checkbox" name="selectp3" id="P3" checked>
+        P3:
+        <select name="operators" id="operators31">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        r
+        <select name="operators" id="operators32">
+			<option value="and">∧</option>
+			<option value="or">∨</option>
+			<option value="implicates">→</option>
+			<option value="biconditional">↔</option>
+        </select>
+
+        <select name="operators" id="operators33">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        s 
+      </p>
+
+      <p class="prop1">
+        <input type="checkbox" name="selectp4" id="P4" checked>
+        P4:
+        <select name="operators" id="operators41">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        s
+        <select name="operators" id="operators42">
+			<option value="and">∧</option>
+			<option value="or">∨</option>
+			<option value="implicates">→</option>
+			<option value="biconditional">↔</option>
+        </select>
+
+        <select name="operators" id="operators43">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        t 
+      </p>
+
+      <hr>
+
+      <p class="prop1">
+        C:(
+        <select name="operators" id="operators51">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        p
+        <select name="operators" id="operators52">
+			<option value="and">∧</option>
+			<option value="or">∨</option>
+			<option value="implicates">→</option>
+			<option value="biconditional">↔</option>
+        </select>
+
+        <select name="operators" id="operators53">
+          <option value="nothing"></option>
+          <option value="not">¬</option>
+        </select>
+        q)
+        <select name="operators" id="operators54">
+          <option value="and">∧</option>
+          <option value="or">∨</option>
+          <option value="implicates">→</option>
+          <option value="biconditional">↔</option>
+            </select>
+    
+            <select name="operators" id="operators55">
+              <option value="nothing"></option>
+              <option value="not">¬</option>
+            </select>
+            r
+      </p>
+
+      <p></p>
+      
+      <button type="submit">Verificar argumento</button>
+    </form>
+    <div id="table-container"></div>
+    <div id="container"></div>
+  </body>
+  <!-- <footer>
+	<h3>Codificado por Montes de Oca Arellano Edgar 1BV1</h3>
+	</footer> -->
+  <script src="app.js"></script>
+</html>

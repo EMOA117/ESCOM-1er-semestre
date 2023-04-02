@@ -1,0 +1,129 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  color: #333;
+}
+
+
+/* Add some margin and padding to the form */
+form {
+margin: 10px;
+padding: 10px;
+background-color: #fff;
+border: 2px solid #ddd;
+box-shadow: 10 10 10px #ddd;
+}
+
+/* Style the labels for the input fields */
+label {
+display: block;
+margin-bottom: 10px;
+font-weight: bold;
+color: #1a1a1a;
+}
+
+/* Style the buttons */
+button[type="submit"] {
+display: block; 
+margin: 0 auto;
+width: 100%; 
+max-width: 300px;
+padding: 10px 20px;
+background-color: #5e0603;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+
+}
+
+/* Add some styles to the operators */
+select[name="operators"] {
+font-weight: bold;
+color: #555;
+}
+
+table {
+border-collapse: collapse;
+overflow-x: auto;
+width: 100%;
+margin-bottom: 20px;
+background-color: #f7f7f7;
+}
+
+th,
+td {
+padding: 10px;
+text-align: center;
+border-bottom: 1px solid #ddd;
+}
+
+th {
+background-color: #5e0603;
+color: white;
+}
+
+tr:hover {
+background-color: #f3bdbd;
+}
+
+@media (max-width: 768px) {
+table {
+font-size: 12px;
+}
+}
+
+input {
+margin: 0 10px;
+font-weight: bold;
+color: #5e0603;
+}
+
+footer {
+  position: -ms-page;
+  color:  #ffff;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #5e0603;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\2714";
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="checkbox"]:hover {
+  background-color: #f7f7f7;
+}
+
+input[type="checkbox"]:checked {
+  border-color: #5e0603;
+  background-color: #5e0603;
+}

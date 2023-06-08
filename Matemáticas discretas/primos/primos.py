@@ -12,6 +12,8 @@ def is_prime(n):
         return False
     for i in range(3, raiz , 2):
         if n % i == 0:
+            print(i)
+            print((505*505*505*505*505*505*505*505*505*505*505) % 899)
             return False
     return True
 

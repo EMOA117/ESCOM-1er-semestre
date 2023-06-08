@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Tilt Warp';
+    src: url(static/TiltWarp-Regular.ttf);
+}
+
+body{
+    background: #000;
+}
+
+.contenedor{
+    font-family: 'Tilt Warp', cursive;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+
+    /* background: rgb(158, 140, 90);
+    border: 3px rgb(197, 183, 60) solid; */
+    width: 700px;
+
+}
+
+label, button{
+    font-family: 'Tilt Warp', cursive;
+    margin: 10px 0px;
+}
+
+#graph-container{
+
+    background: rgb(255, 255, 255);
+    width: 500px;
+    height: 500px;
+    border: 3px rgb(60, 115, 197) solid;
+}

@@ -22,26 +22,26 @@ def division(a,b):
     print("b debe ser un valor mayor que 1")
   
   print("---------------------------------------------------------")
-  return cociente
+  return cociente, residuo
 
-def bezout(a, b):
-    # Asegurarse de que a sea mayor o igual que b
-    if a < b:
-        a, b = b, a
+# def bezout(a, b):
+#     # Asegurarse de que a sea mayor o igual que b
+#     if a < b:
+#         a, b = b, a
 
-    # Inicializar variables
-    r_prev, r = a, b
-    x_prev, x = 1, 0
-    y_prev, y = 0, 1
+#     # Inicializar variables
+#     r_prev, r = a, b
+#     x_prev, x = 1, 0
+#     y_prev, y = 0, 1
 
-    # Algoritmo de Bezout por suma y multiplicación
-    while r != 0:
-        q = division(r_prev,r)
-        r_prev, r = r, r_prev - q * r
-        x_prev, x = x, x_prev - q * x
-        y_prev, y = y, y_prev - q * y
+#     # Algoritmo de Bezout por suma y multiplicación
+#     while r != 0:
+#         q = division(r_prev,r)
+#         r_prev, r = r, r_prev - q * r
+#         x_prev, x = x, x_prev - q * x
+#         y_prev, y = y, y_prev - q * y
 
-    return x_prev, y_prev
+#     return x_prev, y_prev
 
 
 def euclides(a, b):
@@ -106,6 +106,16 @@ def euclides(a, b):
 
 
 
+def bezout(a, b):
+    # Caso base
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        # Llamada recursiva
+        cociente, residuo = division(b, a)
+        mcd, x, y = bezout(residuo, a)
+        print(mcd,"=",a,"(",x,")","+",b,"(",y,")")
+        return (mcd, y - cociente * x, x)
 
 # Solicitar los números al usuario
 
@@ -115,11 +125,34 @@ num_b = int(input("Ingrese b: "))
 num_a=abs(num_a)
 num_b=abs(num_b)
 
-if num_a == 0 or num_b == 0:
+if num_a < num_b:
+   num_a, num_b = num_b, num_a
+
+if num_a == 0 and num_b == 0:
    print("mcd(",num_a, ",", num_b, ")= no está definido")
    print("---------------------------------------------------------")
    print("Por lo tanto los coeficientes de Bezout (x, y) para", num_a,"y" ,num_b, "no están definidos")
-else:
+elif num_a == 0 or num_b == 0:
+    if num_a == 0:
+        print("mcd(",num_a, ",", num_b, ")=", num_b)
+        # Calcular los coeficientes de Bezout utilizando el algoritmo de Bezout
+        mcd,coef_x, coef_y = bezout(num_a, num_b)
+        # Imprimir el resultado
+        if num_a<num_b:
+            num_a, num_b = num_b, num_a
+        print("Los coeficientes de Bezout (x, y) para", num_a, "y", num_b, "son:", coef_x, ",", coef_y)
+        print(mcd,"=",num_b,"(",coef_x, ") +",num_a,"(",coef_y,")")
+    else:
+        print("mcd(",num_a, ",", num_b, ")=", num_a)
+        # Calcular los coeficientes de Bezout utilizando el algoritmo de Bezout
+        mcd,coef_x, coef_y = bezout(num_a, num_b)
+        # Imprimir el resultado
+        if num_a<num_b:
+            num_a, num_b = num_b, num_a
+        print("Los coeficientes de Bezout (x, y) para", num_a, "y", num_b, "son:", coef_x, ",", coef_y)
+        print(mcd,"=",num_a,"(",coef_x, ") +",num_b,"(",coef_y,")")
+
+elif num_a != 0 and num_b != 0:
    # Calcular el máximo común divisor utilizando el algoritmo de Euclides
   mcd = euclides(num_a, num_b)
   # Imprimir el resultado
@@ -127,10 +160,9 @@ else:
   print("mcd(",num_a, ",", num_b, ")=", mcd)
   print("---------------------------------------------------------")
   # Calcular los coeficientes de Bezout utilizando el algoritmo de Bezout
-  coef_x, coef_y = bezout(num_a, num_b)
+  mcd,coef_x, coef_y = bezout(num_a, num_b)
   # Imprimir el resultado
   if num_a<num_b:
     num_a, num_b = num_b, num_a
   print("Los coeficientes de Bezout (x, y) para", num_a, "y", num_b, "son:", coef_x, ",", coef_y)
   print(mcd,"=",num_a,"(",coef_x, ") +",num_b,"(",coef_y,")")
- 
